@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% load static %}
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.1/dist/full.min.css" rel="stylesheet" type="text/css" />
+    
+
+    <title>SmartCheck - View Student Data</title>
+</head>
+<body class="bg-white text-gray-700">
+    <!-- <div class="text-4xl text-center">PixelHR - Dashboard</div> -->
+
+    <div class="grid grid-cols-7">
+        <div class="border h-screen">
+            
+            <div class="flex py-2 mx-10"><img class="w-10 h-10 rounded-full" src="{% static 'attendapp\setup\SmartCheck-logo.jpeg' %}" alt="logo">
+                <div class="text-xl font-bold pt-2">SmartCheck</div>
+            </div>
+
+
+            <div class="mx-4 px-2">
+                <div class="text-xl border my-2 rounded-md px-2 p-2 hover:bg-indigo-600 hover:text-white">
+                    <a href="/dashboard"><i class="fa-solid fa-table mr-2"></i> Branch</a>
+                </div>
+                
+                <div class="text-xl border my-2 rounded-md px-2 p-2 hover:bg-indigo-600 hover:text-white">
+                    <a href="/todayattendence">
+                        <i class="fa-solid fa-user mr-2"></i> Attendence</a>
+                </div>
+                
+                <div class="text-xl border my-2 rounded-md px-2 p-2 hover:bg-indigo-600 hover:text-white">
+                    <a href="/addstudent">
+                        <i class="fa-solid fa-user-circle mr-2"></i> Add Student</a>
+                </div>
+                    
+                <!-- <div class="text-xl border my-2 rounded-md px-2 p-2 hover:bg-indigo-600 hover:text-white">
+                    <a href="/leavemanage/?view=all"><i class="fa-solid fa-gear mr-2"></i> Leaves</a>
+                </div> -->
+                
+                <!-- <div class="text-xl border my-2 rounded-md px-2 p-2 hover:bg-indigo-600 hover:text-white">
+                    <a href="/reimbusmentmanage">
+                        <i class="fa-solid fa-user mr-2"></i>Reimbusment</a>   
+                </div>
+                
+                <div class="text-xl border my-2 rounded-md px-2 p-2 hover:bg-indigo-600 hover:text-white">
+                    <a href="/hrbot">
+                        <i class="fa-solid fa-robot mr-2"></i>Bot</a>   
+                </div> -->
+
+
+                <!-- <div class="text-xl border my-2 rounded-md px-2 p-2 hover:bg-indigo-600 hover:text-white"><i class="fa-solid fa-chart-simple mr-2"></i> Chart</div> -->
+            </div>
+        </div>
+
+        
+
+
+        <div class="col-span-6 border">
+            
+            <!-- nav bar -->
+            <div class="border grid grid-cols-9 py-2">
+                <div class="col-span-6 ml-10 font-bold text-2xl">Roll No - {{ capbranch }}</div>
+                <div class="hidden col-span-2 mx-6 text-right text-xl">
+                    <i class="fa-solid fa-bell border rounded-full p-2 hover:bg-indigo-700 hover:text-white"></i>
+                    <i class="fa-solid fa-envelope border rounded-full p-2 hover:bg-indigo-700 hover:text-white"></i>
+                </div>
+                <div></div>
+                <div></div>
+                <div>
+                    <a href="{% url 'user_logout' %}" class="grid grid-cols-3">
+                        <div class="text-sm col-span-2 my-auto font-bold text-center">{{ user.username|title }}</div>
+                        <div><img class="w-10 h-10 rounded-full border border-2" 
+                            src="{% static 'attendapp\setup\boy avatar.png' %}" alt=""></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="px-10">
+                {% if unique_years %}
+                <div class="text-center font-bold mt-2">Year</div>
+                <div class="grid grid-cols-4 gap-2 mt-2 border p-2">
+                    {% for year in unique_years %}
+                    <p class="border rounded-md text-center shadow-md hover:bg-gray-100">{{ year }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Dashboard Area -->
+            <div class="p-10">
+                
+                <!-- section 1 -->
+                {% if studentsdetails %}
+                <div class="grid grid-cols-4 gap-4">
+                    
+                    <div class="p-6 border border-4 rounded-md text-center hover:shadow hover:shadow-md hover:shadow-indigo-300">
+                            <img src="{% static studentsdetails.imgpath %}" alt="Avatar" class="rounded-md shadow-xl mb-4 mx-auto h-60">
+                            
+                    </div>
+
+                    <div class=" px-4 py-4">
+                        <div class="text-xl font-bold mb-6">{{ studentsdetails.name }}</div>
+                            <div class="text-md my-2">Roll: {{ studentsdetails.rollno }}</div>
+                            <div class="text-md my-2">Year: {{ studentsdetails.year }}</div>  
+                            <div class="text-md my-2">Div: {{ studentsdetails.div }}</div>  
+                            <div class="text-md my-2">Branch: {{ studentsdetails.branch }}</div>  
+                            <div class="text-md my-2">Address: {{ studentsdetails.address }}</div>  
+                            <div class="text-md my-2">Phoneno: {{ studentsdetails.phoneno }}</div>  
+                            <div class="text-md my-2">Parentphoneno: {{ studentsdetails.parentphoneno }}</div>  
+                    </div>
+
+                    <div class="col-span-2 pt-20">
+                        <!-- Grades -->
+                        <div class="p-2 text-center">
+                            <div>Year-1 <b class="border rounded-md bg-gray-100 px-1">CGPA:{{ studentsdetails.y1cgpa }}</b> <b class="border rounded-md bg-gray-100 px-1">SGPA:{{ studentsdetails.y1sgpa }}</b></div>
+                            <div>Year-2 <b class="border rounded-md bg-gray-100 px-1">CGPA:{{ studentsdetails.y2cgpa }}</b> <b class="border rounded-md bg-gray-100 px-1">SGPA:{{ studentsdetails.y2sgpa }}</b></div>
+                            <div>Year-3 <b class="border rounded-md bg-gray-100 px-1">CGPA:{{ studentsdetails.y3cgpa }}</b> <b class="border rounded-md bg-gray-100 px-1">SGPA:{{ studentsdetails.y3sgpa }}</b></div>
+                            <div>Year-4 <b class="border rounded-md bg-gray-100 px-1">CGPA:{{ studentsdetails.y4cgpa }}</b> <b class="border rounded-md bg-gray-100 px-1">SGPA:{{ studentsdetails.y4sgpa }}</b></div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                </div>
+                {% endif %}
+                
+                <!-- Calander -->
+                
+                {% if timetableMon %}
+                <div class="text-center font-bold text-2xl mt-10">Time Table</div>
+                <div class="grid grid-cols-6 border p-4 text-center">
+
+                    <div class="mx-4 py-4">                        
+                        <!-- Monday -->
+                        <div class="text-xl font-bold">Timing</div>
+                        {% for item in timetableMon %}
+                            <p class="py-4 my-2 border rounded-md text-center shadow-md hover:bg-gray-100">{{ item.starttime }} - {{ item.endtime }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="mx-4 py-4">                        
+                        <!-- Monday -->
+                        <div class="text-xl font-bold">Monday</div>
+                        {% for item in timetableMon %}
+                            <p class="py-4 my-2 border rounded-md text-center shadow-md hover:bg-gray-100">{{ item.leacture }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="mx-4 py-4">
+                        <!-- Tuesday -->
+                        <div class="text-xl font-bold">Tuesday</div>
+                        {% for item in timetableTue %}
+                            <p class="py-4 my-2 border rounded-md text-center shadow-md hover:bg-gray-100">{{ item.leacture }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="mx-4 py-4">
+                        <!-- Wednesday -->
+                        <div class="text-xl font-bold">Wednesday</div>
+                        {% for item in timetableWed %}
+                            <p class="py-4 my-2 border rounded-md text-center shadow-md hover:bg-gray-100">{{ item.leacture }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="mx-4 py-4">
+                        <!-- Thursday -->
+                        <div class="text-xl font-bold">Thursday</div>
+                        {% for item in timetableThu %}
+                            <p class="py-4 my-2 border rounded-md text-center shadow-md hover:bg-gray-100">{{ item.leacture }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="mx-4 py-4">
+                        <!-- Friday -->
+                        <div class="text-xl font-bold">Friday</div>
+                        {% for item in timetableFri %}
+                            <p class="py-4 my-2 border rounded-md text-center shadow-md hover:bg-gray-100">{{ item.leacture }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if Studattendencedata %}
+                    <div class="text-center font-bold text-4xl mt-10 mb-4 text-green-500">Present Dates & Days</div>
+                    <div class="grid grid-cols-4 gap-4 text-center">
+                        {% for item in Studattendencedata %}
+                            <div class="border p-10">
+                                <div class="text-center ">
+                                    <div class="p-2 border text-xl font-bold mb-4">{{ item.day }}</div> 
+                                    {{ item.leacture }} <br><br> {{ item.lectProf }} <br><br> {{ item.timestamp }}
+                                    
+
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+            </div>
+
+        </div>
+    </div>
+
+ 
+
+    
+
+</body>
+</html>
