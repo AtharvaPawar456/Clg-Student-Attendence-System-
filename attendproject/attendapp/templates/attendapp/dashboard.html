@@ -129,6 +129,15 @@
                     </div>
                     {% endif %}
 
+                    {% if "electrical" in unique_branches %}
+                    <div class="p-6 border border-4 rounded-md text-center hover:shadow hover:shadow-md hover:shadow-indigo-300">
+                        <a href="/viewbranch/?view=electrical">
+                            <div class=" text-[120px]"><i class="fa-solid fa-plug-circle-bolt"></i></div>
+                            <div>Electrical</div>
+                            <div class="text-xl font-bold">(Electric)</div>
+                        </a>
+                    </div>
+                    {% endif %}
 
                 </div>
 

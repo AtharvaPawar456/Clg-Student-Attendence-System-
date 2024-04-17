@@ -384,8 +384,8 @@ def dashboard(request):
 
     # Create lists for unique branch, div, and year
     unique_branches = student_profiles.values_list('branch', flat=True).distinct()
-    unique_divs = student_profiles.values_list('div', flat=True).distinct()
-    unique_years = student_profiles.values_list('year', flat=True).distinct()
+    unique_divs     = student_profiles.values_list('div', flat=True).distinct()
+    unique_years    = student_profiles.values_list('year', flat=True).distinct()
 
     # Print all unique branches, divs, and years
     print("Unique Branches:")
