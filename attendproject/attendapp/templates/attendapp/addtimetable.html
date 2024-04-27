@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {% load static %}
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <title>Add Student</title>
+</head>
+<body>
+    <h2 class="text-2xl text-center py-10 font-bold">Add Student <i class="fa-solid fa-address-card"></i></h2>
+
+    {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% endif %}
+
+    <form action="{% url 'addtimetable' %}" method="post" class="max-w-sm mx-auto px-2">
+        {% csrf_token %}
+
+        <!-- <label for="username">Username:</label>
+        <input type="text" name="username" required> -->
+
+
+        <div class="mb-5">
+            <label for="branch" class="block mb-2 text-sm font-medium text-gray-900 ">Branch:</label>
+            <input type="text" id="branch" name="branch"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="comps" required>
+        </div>
+
+        <div class="mb-5">
+            <label for="year" class="block mb-2 text-sm font-medium text-gray-900 ">Year:</label>
+            <input type="text" id="year" name="year"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="2024" required>
+        </div>
+        
+        <div class="mb-5">
+            <label for="div" class="block mb-2 text-sm font-medium text-gray-900 ">Div:</label>
+            <input type="text" id="div" name="div"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="a" required>
+        </div>
+
+        <div class="mb-5">
+            <label for="day" class="block mb-2 text-sm font-medium text-gray-900 ">Day:</label>
+            <input type="text" id="day" name="day"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Monday / Tuesday / Wednesday" required>
+        </div>
+
+        <div class="mb-5">
+            <label for="starttime" class="block mb-2 text-sm font-medium text-gray-900 ">Leacture Starttime:</label>
+            <input type="text" id="starttime" name="starttime"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="09:00" required>
+        </div>
+        
+        <div class="mb-5">
+            <label for="endtime" class="block mb-2 text-sm font-medium text-gray-900 ">Leacture Endtime:</label>
+            <input type="text" id="endtime" name="endtime"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="10:30" required>
+        </div>
+        
+        <div class="mb-5">
+            <label for="leacture" class="block mb-2 text-sm font-medium text-gray-900 ">Lecture:</label>
+            <input type="text" id="leacture" name="leacture"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Maths 4" required>
+        </div>
+        
+        <div class="mb-5">
+            <label for="lectProf" class="block mb-2 text-sm font-medium text-gray-900 ">Lecture Prof:</label>
+            <input type="text" id="lectProf" name="lectProf"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" 
+            placeholder="...Dr. Sahil" required>
+        </div>
+        
+       
+
+        
+        <!-- 
+                year   = models.IntegerField(default=2024)
+    rollno = models.IntegerField(default=0)
+    name   = models.CharField(max_length=200, default="-")
+
+    div    = models.CharField(max_length=200, default="-")
+    branch = models.CharField(max_length=200, default="-")
+    
+    y1cgpa = models.FloatField(verbose_name='Y1CGPA', default=0.0)
+    y1sgpa = models.FloatField(verbose_name='Y1SGPA', default=0.0)
+    
+    y2cgpa = models.FloatField(verbose_name='Y2CGPA', default=0.0)
+    y2sgpa = models.FloatField(verbose_name='Y2SGPA', default=0.0)
+    
+    y3cgpa = models.FloatField(verbose_name='Y3CGPA', default=0.0)
+    y3sgpa = models.FloatField(verbose_name='Y3SGPA', default=0.0)
+    
+    y4cgpa = models.FloatField(verbose_name='Y4CGPA', default=0.0)
+    y4sgpa = models.FloatField(verbose_name='Y4SGPA', default=0.0)
+    
+    address = models.CharField(max_length=1000, default="-")
+    phoneno = models.CharField(max_length=200, default="-")
+    
+    parentphoneno = models.CharField(max_length=200, default="-")
+
+    teachername = models.CharField(max_length=200, default="Sahil")
+         -->
+        
+        
+        <!-- <label for="email">Email:</label>
+        <input type="email" name="email" required> -->
+        <!-- <label for="password">Password:</label>
+        <input type="password" name="password" required> -->
+        
+
+
+        
+        <button type="submit" 
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-10 py-2.5 text-center">Register
+        </button>
+
+        <a href="{% url 'user_login' %}" 
+            class="text-black border border-blue-500 bg-white hover:bg-blue-100 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-10 py-2.5 text-center">Back
+        </a>
+
+    </form>
+
+</body>
+</html>

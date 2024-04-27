@@ -10,7 +10,9 @@ urlpatterns = [
 
     path("markattendapi/", views.markattendapi, name="markattendapi"),
     path("todayattendence/", views.todayattendence, name="todayattendence"),
+  
     path("addstudent/", views.addstudent, name="addstudent"),
+    path("addtimetable/", views.addtimetable, name="addtimetable"),
   
     path('user_login/', views.user_login, name='user_login'),
     path('user_logout/', views.user_logout, name='user_logout'),

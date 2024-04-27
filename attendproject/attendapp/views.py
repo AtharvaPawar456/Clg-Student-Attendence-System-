@@ -151,6 +151,67 @@ def addstudent(request):
         error_message = None
     return render(request, 'attendapp/addstudent.html', {'error_message': error_message})
 
+'''
+    branch         = models.CharField(max_length=200, default="-")
+    year         = models.CharField(max_length=200, default="-")
+    div         = models.CharField(max_length=200, default="-")
+    day         = models.CharField(max_length=200, default="-")
+    starttime   = models.CharField(max_length=200, default="-")
+    endtime     = models.CharField(max_length=200, default="-")
+    leacture    = models.CharField(max_length=200, default="-") #subject
+    lectProf    = models.CharField(max_length=200, default="-")
+    status      = models.CharField(max_length=200, default="present")
+'''
+
+
+def addtimetable(request):
+    if request.method == 'POST':
+        branch = request.POST['branch']
+        year = request.POST['year']
+        div = request.POST['div']
+        day = request.POST['day']
+        starttime = request.POST['starttime']
+        endtime = request.POST['endtime']
+        leacture = request.POST['leacture']
+        lectProf = request.POST['lectProf']
+        status = "present"
+        
+        
+
+        print("Branch:", branch)
+        print("Year:", year)
+        print("Division:", div)
+        print("day:", day)
+        print("starttime:", starttime)
+        print("endtime:", endtime)
+        print("leacture:", leacture)
+        print("lectProf:", lectProf)
+        print("status:", status)
+
+
+
+        # Check if the username is unique
+        # if not User.objects.filter(username=username).exists():
+            # Create a new user
+        TimeTable_data = TimeTable(branch=branch, year=year, div=div, day=day, starttime=starttime , endtime=endtime, leacture= leacture, lectProf=lectProf, status=status)
+        TimeTable_data.save() # Save the instance to the database
+            
+        return redirect('dashboard')  # Redirect to your login view
+        # else:
+        #     error_message = 'Username already exists'
+    else:
+        error_message = None
+    return render(request, 'attendapp/addtimetable.html', {'error_message': error_message})
+
+
+
+
+
+
+
+
+
+
 def databaseupdate(request):
     # Create timetable entries
     timetable_data = [

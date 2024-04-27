@@ -13,7 +13,9 @@ username : attendAdmin
 password : @attend123
 
 
+https://303a4d31-e5a6-48fb-a892-d7c38d127725-00-vxvd2fjjp7vd.worf.replit.dev/markattendapi/?rollno=1111
 
+https://a9075cd6-a622-4900-9db4-c7686750bf25-00-2cub4gy5lnaim.pike.replit.dev/markattendapi/?rollno=1111
 
 ### Run Migrations:
 python manage.py migrate
